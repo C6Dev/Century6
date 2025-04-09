@@ -3,87 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biglands</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Century6 - Indie Game Development</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1 class="logo">Biglands</h1>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#projects">Our Work</a></li>
-                    <li><a href="#vortex">Vortex Engine</a></li>
-                    <li><a href="#youtube">YouTube</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
+    <div class="container">
+        <header>
+            <!-- Text-based Logo -->
+            <h1>Century6</h1>
+            <p class="tagline">Indie Game Development</p>
+
+            <nav id="main-nav">
+                <a href="#news" class="active">News Feed</a>
+                <a href="#games">Games</a>
+                <a href="#about">About</a>
             </nav>
-        </div>
-    </header>
+        </header>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h2>Welcome to Biglands</h2>
-            <p>Innovating Entertainment & Technology</p>
-            <div class="hero-buttons">
-                <a href="#vortex" class="btn">Explore Vortex Engine</a>
-                <a href="#youtube" class="btn">Visit YouTube</a>
-            </div>
-        </div>
-    </section>
-
-    <section id="about" class="about">
-        <div class="container">
-            <h2>Who We Are</h2>
-            <p>At Biglands, we’re passionate about technology and creativity. From our proprietary game engine, the Vortex Engine, to innovative game development, Biglands is more than a company – it’s a vision for entertainment.</p>
-        </div>
-    </section>
-
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2>Our Projects</h2>
-            <div class="project-cards">
-                <div class="card">
-                    <h3>Vortex Engine</h3>
-                    <p>Our in-house game engine designed for creators of all levels. Built to empower the next generation of game developers.</p>
-                    <a href="#vortex" class="btn">Learn More</a>
-                </div>
-                <div class="card">
-                    <h3>Game Development</h3>
-                    <p>We’re working on exciting new titles that push the boundaries of gameplay. Stay tuned for our first release!</p>
-                    <a href="#projects" class="btn">Discover Games</a>
-                </div>
-                <div class="card">
-                    <h3>YouTube Channel</h3>
-                    <p>Join us behind the scenes, explore game development, and enjoy entertaining content on our YouTube channel.</p>
-                    <a href="#youtube" class="btn">Subscribe Now</a>
+        <main id="content-container">
+            <div id="games-section" class="content-section">
+                <!-- Placeholder Project Entry -->
+                <div class="game-item">
+                    <div class="game-info">
+                        <h3>[Redacted Project Name]</h3>
+                        <p class="status">(In Development) - New info coming soon</p>
+                    </div>
+                    <div class="updates-section">
+                        <h4>Dev Logs &amp; Updates</h4>
+                        <p>No updates available yet. Check back soon!</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <section id="vortex" class="vortex">
-        <div class="container">
-            <h2>Vortex Engine</h2>
-            <p>There is currently no build of the Vortex Engine as it is still in early development. Stay up to date with the engine at <a href="https://github.com/BiglandsStudio/Biglands-Vortex-Engine" target="_blank">GitHub</a>.</p>
-            <p>Help with development by reporting bugs or suggesting new features is always appreciated!</p>
-        </div>
-    </section>
+            <div id="news-section" class="content-section">
+                <div class="news-item">
+                    <h4>Welcome!</h4>
+                    <p>This site is currently under development. More news coming soon.</p>
+                </div>
+            </div>
 
-    <footer>
-        <div class="container">
-            <p>Biglands is not a company yet, so no copyrights are in effect. However, this will change in the future.</p>
-            <nav>
-                <ul class="footer-links">
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#projects">Our Work</a></li>
-                    <li><a href="#vortex">Vortex Engine</a></li>
-                    <li><a href="#youtube">YouTube</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </footer>
+            <div id="about-section" class="content-section" style="display: none;">
+                <h2>About</h2>
+                <p>A one-person passion project.</p>
+                <p>Can't wait to show more!</p>
+            </div>
+        </main>
+
+        <footer>
+            <div class="social-links">
+                <p>Follow along:</p>
+                <a href="https://x.com/Century6Games" target="_blank" rel="noopener noreferrer">X: @Century6Games</a> |
+                <a href="https://youtube.com/@Century6Games" target="_blank" rel="noopener noreferrer">YouTube: @Century6Games</a>
+            </div>
+
+            <div class="disclaimer">
+                <p>Century6 and project titles are subject to change.</p>
+            </div>
+        </footer>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
