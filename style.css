@@ -49,19 +49,10 @@ header {
 .logo {
     margin-bottom: 0.5em; 
     display: block; 
-}
-
-h1 {
-    font-size: clamp(2.2rem, 8vw, 3.5rem);
-    background: linear-gradient(120deg, #ff7b29, #ffa366);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    text-shadow: 2px 2px 4px rgba(255, 123, 41, 0.2);
-    animation: titlePulse 3s ease-in-out infinite;
-    margin-top: 0; 
-    margin-bottom: 0.1em;
-    font-weight: 700; 
+    max-width: 100%;
+    height: auto;
+    width: clamp(150px, 50vw, 300px); /* Responsive logo size */
+    animation: titlePulse 3s ease-in-out infinite; /* Optional: keep animation */
 }
 
 @keyframes titlePulse {
@@ -125,12 +116,13 @@ p {
     border-top: 1px solid var(--border-color); 
     padding-top: 1.5em;
 }
+
 .social-links p {
     margin: 0 0 0.8em 0; 
     font-size: inherit;
     color: var(--secondary-text-color);
     font-weight: 400;
-     text-align: center;
+    text-align: center;
 }
 
 .social-links a {
@@ -177,12 +169,13 @@ p {
     border-top: 1px solid var(--border-color); 
     padding-top: 1.5em;
 }
+
 .disclaimer p {
-     margin: 0;
-     font-size: inherit;
-     color: inherit;
-     font-weight: 300;
-     text-align: center;
+    margin: 0;
+    font-size: inherit;
+    color: inherit;
+    font-weight: 300;
+    text-align: center;
 }
 
 #main-nav {
@@ -216,7 +209,7 @@ p {
 .content-section {
     margin-top: 2em;
     text-align: left;
-	transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.3s ease-in-out;
 }
 
 .content-section:not(.active) {
