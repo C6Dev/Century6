@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         link.addEventListener('click', handleTabClick);
     });
 
-    // Initial setup based on URL hash or default to 'games'
+    // Initial setup based on URL hash or default to 'news'
     const initialSection = window.location.hash ? window.location.hash.substring(1) + '-section' : 'news-section';
     showSection(initialSection);
 });
