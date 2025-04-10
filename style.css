@@ -75,9 +75,21 @@ header {
     box-sizing: border-box;
 }
 
-.logo {
-    margin-bottom: 0.5em; 
-    display: block; 
+.logo-container {
+    margin-bottom: 1rem;
+}
+
+.century6-logo {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+    object-fit: contain;
+}
+
+.logo-text {
+    font-size: 120px;
+    fill: var(--accent-color);
+    font-weight: bold;
 }
 
 h1 {
@@ -156,6 +168,31 @@ p {
     margin-bottom: 0;
 }
 
+.news-categories {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.category-btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 25px;
+    background: var(--section-bg);
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.category-btn.active {
+    background: var(--accent-color);
+    color: white;
+}
+
 .news-item {
     background-color: var(--section-bg);
     margin: 1.5rem auto;
@@ -171,6 +208,51 @@ p {
 .news-item:hover {
     background-color: var(--section-hover-bg);
     box-shadow: 0 4px 10px var(--shadow-color);
+}
+
+.news-card {
+    position: relative;
+    background: var(--section-bg);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 2px 8px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    text-align: left;
+    border: 1px solid var(--border-color);
+}
+
+.news-tag {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    background: var(--accent-color);
+    color: white;
+    opacity: 0.9;
+}
+
+.news-date {
+    display: block;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--secondary-text-color);
+    font-style: italic;
+}
+
+.news-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    animation: none;
+}
+
+.news-card h4 {
+    font-size: 1.4rem;
+    margin: 0.5rem 0;
+    color: var(--text-color);
 }
 
 .social-links {
@@ -359,6 +441,10 @@ footer {
     transform: scale(1.1);
 }
 
+.news-card {
+    cursor: pointer;
+}
+
 .games-grid {
     display: grid;
     gap: 2rem;
@@ -426,6 +512,14 @@ footer {
     color: var(--text-color);
 }
 
+.card-back h3 {
+    color: white !important;
+}
+
+.card-back .description {
+    color: white !important;
+}
+
 .view-devlog {
     background: white;
     color: var(--accent-color);
@@ -448,44 +542,6 @@ footer {
     gap: 2rem;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     padding: 1rem;
-}
-
-.news-card {
-    background: var(--section-bg);
-    border-radius: 15px;
-    padding: 2rem;
-    box-shadow: 0 2px 8px var(--shadow-color);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-    text-align: center;
-}
-
-.news-card:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 8px 20px var(--shadow-color);
-}
-
-.news-icon {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    animation: bounce 2s infinite;
-}
-
-@keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-}
-
-.news-card h4 {
-    color: var(--accent-color);
-    margin: 0 0 1rem 0;
-    font-size: 1.4rem;
-}
-
-.news-card p {
-    margin: 0;
-    line-height: 1.6;
-    color: var(--secondary-text-color);
 }
 
 .devlog-entries {
@@ -558,5 +614,16 @@ footer {
     .content-section {
         margin: 0 auto;
         padding: 3rem clamp(20px, 5vw, 40px);
+    }
+}
+
+@media (max-width: 768px) {
+    .news-categories {
+        padding: 0 1rem;
+    }
+    
+    .category-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.8rem;
     }
 }
