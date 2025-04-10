@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Sliced Together - Game Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Default variables for light theme */
+        :root {
+            --background-start: #e0f7fa;          /* Light blue */
+            --background-end: #ffffff;            /* White */
+            --text-color: #424242;                /* Dark gray */
+            --container-bg: rgba(255, 255, 255, 0.7); /* Semi-transparent white */
+            --section-bg: rgba(179, 229, 252, 0.5);   /* Light pastel blue */
+            --section-border: rgba(179, 229, 252, 0.7);
+            --community-bg: rgba(225, 190, 231, 0.5); /* Light pastel purple */
+            --community-border: rgba(225, 190, 231, 0.7);
+            --heading-color: #00796b;             /* Teal */
+            --community-heading: #6a1b9a;         /* Purple */
+            --tagline-color: #607d8b;             /* Grayish-blue */
+            --button-bg: #4caf50;                 /* Green */
+            --button-hover-bg: #388e3c;           /* Darker green */
+            --social-link-bg: rgba(3, 169, 244, 0.1); /* Light blue */
+            --social-link-hover-bg: rgba(3, 169, 244, 0.3);
+            --disclaimer-color: #424242;          /* Dark gray */
+        }
+
+        /* Dark theme variables */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --background-start: #121212;          /* Very dark gray */
+                --background-end: #000000;            /* Black */
+                --text-color: #e0e0e0;                /* Light gray */
+                --container-bg: #1e1e1e;              /* Dark gray */
+                --section-bg: #2c2c2c;                /* Darker gray */
+                --section-border: #424242;            /* Medium gray */
+                --community-bg: #3c3c3c;              /* Slightly lighter gray */
+                --community-border: #424242;          /* Medium gray */
+                --heading-color: #ffffff;             /* White */
+                --community-heading: #ffffff;         /* White */
+                --tagline-color: #b0bec5;             /* Light bluish-gray */
+                --button-bg: #ff5722;                 /* Vibrant orange */
+                --button-hover-bg: #e64a19;           /* Darker orange */
+                --social-link-bg: #424242;            /* Medium gray */
+                --social-link-hover-bg: #616161;      /* Lighter gray */
+                --disclaimer-color: #bdbdbd;          /* Light gray */
+            }
+        }
+
+        /* Apply styles using variables */
+        body {
+            background: linear-gradient(to bottom, var(--background-start), var(--background-end));
+            color: var(--text-color);
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 95%;
+            margin: 20px auto;
+            background: var(--container-bg);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--section-border);
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-family: 'Chewy', cursive;
+            font-size: 4.5em;
+            margin-bottom: 10px;
+            color: var(--heading-color);
+            text-shadow: none; /* Removed to avoid logo-like appearance */
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .tagline {
+            font-size: 1.8em;
+            color: var(--tagline-color);
+            margin-top: 0;
+            font-weight: 400;
+            font-style: italic;
+            text-shadow: 1px 1px 2px #ffffff;
+        }
+
+        .content-section {
+            margin-bottom: 35px;
+            padding: 30px;
+            border-radius: 12px;
+            background: var(--section-bg);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--section-border);
+        }
+
+        #community {
+            background: var(--community-bg);
+            border: 1px solid var(--community-border);
+        }
+
+        .content-section h2 {
+            color: var(--heading-color);
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 3em;
+            text-shadow: none; /* Removed for consistency and modern look */
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        #community h2 {
+            color: var(--community-heading);
+        }
+
+        .content-section p {
+            color: var(--text-color);
+            line-height: 1.7;
+            font-size: 1.1em;
+            text-align: center;
+        }
+
+        .back-button {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: var(--button-bg);
+            color: #fff;
+            border-radius: 7px;
+            text-decoration: none;
+            margin-top: 30px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .back-button:hover {
+            transform: scale(1.05);
+            background-color: var(--button-hover-bg);
+        }
+
+        .social-links {
+            margin-bottom: 2em;
+            font-size: clamp(0.9rem, 3.5vw, 1rem);
+            border-top: 1px solid rgba(66, 66, 66, 0.2);
+            padding-top: 2em;
+            text-align: center;
+        }
+
+        .social-links p {
+            margin: 0 0 1em 0;
+            font-size: inherit;
+            color: var(--tagline-color);
+            font-weight: 400;
+        }
+
+        .social-links a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 1em;
+            font-weight: 600;
+            padding: 5px 8px;
+            border-radius: 5px;
+            background-color: var(--social-link-bg);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-size: 1.2em;
+        }
+
+        .social-links a:hover {
+            background-color: var(--social-link-hover-bg);
+            color: #fff;
+        }
+
+        .disclaimer {
+            margin-top: 3em;
+            font-size: clamp(0.75rem, 2.5vw, 0.9rem);
+            color: var(--disclaimer-color);
+            border-top: 1px solid rgba(66, 66, 66, 0.2);
+            padding-top: 2em;
+            text-align: center;
+        }
+
+        .disclaimer p {
+            margin: 0;
+            font-size: inherit;
+            color: inherit;
+            font-weight: 300;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3em;
+            }
+            .tagline {
+                font-size: 1.2em;
+            }
+            .content-section h2 {
+                font-size: 2em;
+            }
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Sliced Together</h1>
+            <p class="tagline">Game Hub</p>
+            <a href="./index.html" class="back-button">Back to Home</a>
+        </header>
+
+        <main id="content-container">
+            <section id="game-info" class="content-section">
+                <h2>About the Game</h2>
+                <p>More info soon.</p>
+            </section>
+
+            <section id="community" class="content-section">
+                <h2>Stay Connected</h2>
+                <div class="social-links">
+                    <p>Follow our development journey:</p>
+                    <a href="https://x.com/Century6Games" target="_blank" rel="noopener noreferrer">X: @Century6Games</a> |
+                    <a href="https://youtube.com/@Century6Games" target="_blank" rel="noopener noreferrer">YouTube: @Century6Games</a>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="disclaimer">
+                <p>Century6 & Sliced Together are not copyrighted or trademarked yet.</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
