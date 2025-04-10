@@ -2,80 +2,84 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Century6 - Indie Game Development</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <meta name="color-scheme" content="light dark">
     <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="/manifest.json">
 </head>
 <body>
     <div class="container">
         <header>
-            <!-- Text-based Logo replaced/supplemented with image -->
-            <img src="logo.png" alt="Century6 Logo" class="logo">
+            <!-- Text-based Logo -->
+            <!-- Ensure h1 and p are styled appropriately -->
             <h1>Century6</h1>
             <p class="tagline">Indie Game Development</p>
+
             <nav id="main-nav">
                 <a href="#news" class="active">News Feed</a>
                 <a href="#games">Games</a>
                 <a href="#about">About</a>
             </nav>
         </header>
-        <!-- Rest of the HTML remains unchanged -->
+
         <main id="content-container">
             <div id="games-section" class="content-section">
                 <div class="games-grid">
+                    <!-- Game Card Template -->
                     <div class="game-card" data-game-id="sliced-together">
-                        <div class="card-content">
-                            <div class="card-front">
-                                <h3>Sliced Together</h3>
-                                <p class="status">(In Development)</p>
-                                <p class="description">Coming Soon!</p>
+                        <a href="game-hub.html" class="card-link">
+                            <div class="card-content">
+                                <div class="card-front">
+                                    <h3>Sliced Together</h3>
+                                    <p class="status">(In Development)</p>
+                                    <p class="description">Coming Soon!</p>
+                                </div>
+                                <div class="card-back">
+                                    <h3>Game Hub</h3>
+                                    <p class="status"></p>
+                                    <p class="description"></p>
+                                </div>
                             </div>
-                            <div class="card-back">
-                                <button class="view-devlog">View Dev Log</button>
-                            </div>
-                        </div>
+                        </a>
                     </div>
+                    <!-- More game cards can be added here -->
                 </div>
             </div>
+
+            <!-- Game DevLog Pages -->
             <div id="devlog-section" class="content-section" style="display: none;">
-                <button class="back-button">← Back to Games</button>
-                <div id="sliced-together-devlog" class="devlog-content">
-                    <h2>Sliced Together - Development Log</h2>
-                    <div class="devlog-entries">
-                        <div class="devlog-entry">
-                            <h4>Coming Soon!</h4>
-                            <p>Development logs will be posted here as progress continues.</p>
-                        </div>
-                    </div>
-                </div>
             </div>
+
             <div id="news-section" class="content-section">
                 <div class="news-grid">
                     <div class="news-card">
                         <div class="news-icon">📢</div>
-                        <h4>Century6.com is Live!</h4>
+                        <h4>Century6 is Live!</h4>
                         <p>Century6 now has a website under Century6.com!</p>
                     </div>
                 </div>
             </div>
+
             <div id="about-section" class="content-section" style="display: none;">
-                <h2>About</h2>
+                 <h2>About</h2>
                 <p>A one-person passion project.</p>
                 <p>Can't wait to show more!</p>
             </div>
         </main>
+
         <footer>
             <div class="social-links">
                 <p>Follow along:</p>
                 <a href="https://x.com/Century6Games" target="_blank" rel="noopener noreferrer">X: @Century6Games</a> |
                 <a href="https://youtube.com/@Century6Games" target="_blank" rel="noopener noreferrer">YouTube: @Century6Games</a>
             </div>
+
             <div class="disclaimer">
-                <p>Century6 & Sliced Together are not copyrighted or trademarked yet.</p>
+                <p>Century6 &amp; Sliced Together are not copyrighted or trademarked yet.</p>
             </div>
         </footer>
     </div>
