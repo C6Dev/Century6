@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     const mainNav = document.getElementById('main-nav');
     const contentSections = document.querySelectorAll('.content-section');
     const navLinks = mainNav.querySelectorAll('a');
@@ -8,6 +8,45 @@ document.addEventListener('DOMContentLoaded', () => {
     const gameCards = document.querySelectorAll('.game-card');
     const devlogSection = document.getElementById('devlog-section');
     const backToGamesBtn = document.querySelector('.back-button');
+
+    // Load news data
+    const loadNews = async () => {
+        try {
+            const response = await fetch('news.json');
+            const data = await response.json();
+            return data.news;
+        } catch (error) {
+            console.error('Error loading news:', error);
+            return [];
+        }
+    };
+
+    const createNewsCard = (newsItem) => {
+        const card = document.createElement('div');
+        card.className = 'news-card';
+        card.dataset.category = newsItem.category;
+        
+        card.innerHTML = `
+            <div class="news-icon">${newsItem.icon}</div>
+            <span class="news-tag">${newsItem.tag}</span>
+            <h4>${newsItem.title}</h4>
+            <p>${newsItem.content}</p>
+            <span class="news-date">${newsItem.date}</span>
+        `;
+
+        card.addEventListener('click', () => {
+            createExpandedView(card);
+        });
+
+        return card;
+    };
+
+    // Initialize news grid
+    const newsGrid = document.querySelector('.news-grid');
+    const news = await loadNews();
+    news.forEach(newsItem => {
+        newsGrid.appendChild(createNewsCard(newsItem));
+    });
 
     const showSection = (sectionId) => {
         contentSections.forEach(section => {
@@ -32,9 +71,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const handleTabClick = (event) => {
         event.preventDefault();
         const target = event.target;
-        const sectionId = target.getAttribute('href').substring(1) + '-section';
+        const href = target.getAttribute('href');
+        
+        // Check if it's the Game Hub link
+        if (href === '#hub') {
+            window.location.href = 'game-hub.html';
+            return;
+        }
+        
+        const sectionId = href.substring(1) + '-section';
         showSection(sectionId);
-        window.location.hash = target.getAttribute('href');
+        window.location.hash = href;
     };
 
     navLinks.forEach(link => {
@@ -77,12 +124,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.overflow = 'hidden';
     }
 
-    newsItems.forEach(item => {
-        item.addEventListener('click', () => {
-            createExpandedView(item);
-        });
-    });
-
     // Enhanced card interaction
     gameCards.forEach(card => {
         card.addEventListener('mouseenter', () => {
@@ -95,9 +136,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const newsCards = document.querySelectorAll('.news-card');
-    newsCards.forEach(card => {
-        card.addEventListener('click', () => {
-            createExpandedView(card);
+
+    // News category filtering
+    const categoryButtons = document.querySelectorAll('.category-btn');
+
+    categoryButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            categoryButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            const category = button.dataset.category;
+            
+            newsCards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                    card.style.animation = 'fadeIn 0.5s ease-in forwards';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
         });
     });
 
