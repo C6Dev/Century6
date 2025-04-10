@@ -1,0 +1,22 @@
+{
+    "news": [
+        {
+            "id": "century6-live",
+            "category": "announcements",
+            "icon": "🎉",
+            "tag": "Announcement",
+            "title": "Century6 is Live!",
+            "content": "Century6 now has a website under Century6.com!",
+            "date": "April 10, 2025"
+        },
+        {
+            "id": "game-hub-launch",
+            "category": "development",
+            "icon": "🛠️",
+            "tag": "Development",
+            "title": "Game Hub Launch",
+            "content": "Introducing our new Game Hub - your central spot for all game updates!",
+            "date": "April 10, 2025"
+        }
+    ]
+}
