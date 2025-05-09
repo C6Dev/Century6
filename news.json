@@ -10,12 +10,12 @@
             "date": "April 9, 2025"
         },
         {
-            "id": "game-hub-launch",
-            "category": "development",
-            "icon": "🛠️",
-            "tag": "Development",
-            "title": "Game Hub Launch",
-            "content": "Introducing our new Game Hub - your central spot for all game updates!",
+            "id": "stela-engine-announcement",
+            "category": "stela",
+            "icon": "🎮",
+            "tag": "Engine",
+            "title": "Introducing Stela Engine",
+            "content": "Announcing our new open-source game engine - Stela Engine! Now available on GitHub under MIT license.",
             "date": "April 10, 2025"
         }
     ]
