@@ -226,6 +226,13 @@ strong, .highlight {
     align-items: center;
 }
 
+#hero .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 #hero h2 {
     color: var(--text-color); /* Override default header color for hero */
     font-size: 3.5rem; /* Larger hero title */
@@ -234,9 +241,10 @@ strong, .highlight {
 
 #hero p {
     font-size: 1.3rem; /* Larger hero paragraph */
-    margin-bottom: 2.5rem;
+    margin: 0 auto 2.5rem; /* Center horizontally with auto margins */
     color: var(--text-color-secondary);
     max-width: 700px; /* Constrain width for readability */
+    text-align: center; /* Ensure text is centered */
 }
 
 .btn {
