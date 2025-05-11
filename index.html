@@ -1,80 +1,75 @@
-<<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Century6 - Indie Game Development</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <meta name="color-scheme" content="light dark">
-    <link rel="stylesheet" href="./style.css">
-    <link rel="manifest" href="./manifest.json">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="assets/century6-logo.png">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="logo-container">
-                <img src="./logo.png" alt="Century6 Logo" class="century6-logo" width="150" height="150">
-            </div>
-            <h1>Century6</h1>
-            <p class="tagline">Indie Game Development</p>
-
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo-link">
+                <h1>Century6</h1>
+            </a>
+            <button id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <nav id="main-nav">
-                <a href="#news" class="active">News Feed</a>
-                <a href="#games">Games</a>
-                <a href="stela.html">Visit Stela</a> <!-- Fixed local link -->
-                <a href="#about">About</a>
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="stela-engine.html">Stela Engine</a></li>
+                    <!-- <li><a href="#about">About</a></li> -->
+                    <!-- <li><a href="#contact">Contact</a></li> -->
+                </ul>
             </nav>
-        </header>
+        </div>
+    </header>
 
-        <main id="content-container">
-            <div id="news-section" class="content-section">
-                <div class="news-categories">
-                    <button class="category-btn active" data-category="all">All Updates</button>
-                    <button class="category-btn" data-category="announcements">Announcements</button>
-                    <button class="category-btn" data-category="development">Development</button>
-                    <button class="category-btn" data-category="community">Community</button>
-                </div>
-                
-                <div class="news-grid">
-                    <!-- News items will be dynamically populated here -->
-                </div>
+    <main>
+        <section id="hero">
+            <div class="container">
+                <h2 class="scroll-reveal">Innovative Game Development</h2>
+                <p class="scroll-reveal d-100">Century6 is an indie game development company passionate about creating unique and engaging gaming experiences. We are currently focused on building the open-source <span class="highlight">Stela Engine</span>.</p>
+                <a href="stela-engine.html" class="btn scroll-reveal d-200">Learn about Stela Engine</a>
             </div>
+        </section>
 
-            <div id="games-section" class="content-section" style="display: none;">
-                <div class="games-grid">
-                    <div class="game-card">
-                        <div class="card-content">
-                            <div class="card-front">
-                                <h3>Sliced Together</h3>
-                                <p class="status">(In Development)</p>
-                                <p class="description">Coming Soon!</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <section id="about-short" class="scroll-reveal">
+            <div class="container">
+                <h3 class="scroll-reveal">Who We Are</h3>
+                <p class="scroll-reveal d-100">We are a small, dedicated team of developers and artists aiming to push the boundaries of interactive entertainment. Our philosophy revolves around <span class="highlight">open collaboration</span> and <span class="highlight">community-driven</span> development.</p>
             </div>
+        </section>
+         <section id="vision" class="scroll-reveal">
+            <div class="container">
+                <h3 class="scroll-reveal">Our Vision</h3>
+                <p class="scroll-reveal d-100">To empower creators with tools that are both powerful and accessible, fostering a new generation of interactive experiences. We believe in the potential of indie developers to shape the future of gaming.</p>
+                <p class="scroll-reveal d-200">Join us on our journey as we build the <span class="highlight">Stela Engine</span> and explore new frontiers in game design.</p>
+            </div>
+        </section>
+    </main>
 
-            <div id="about-section" class="content-section" style="display: none;">
-                <h2>About</h2>
-                <p>A one-person passion project.</p>
-                <p>Can't wait to show more!</p>
-            </div>
-        </main>
+    <footer>
+        <div class="container scroll-reveal">
+            <p>&copy; <span id="current-year"></span> Century6. All rights reserved.</p>
+            <p>Pioneering the future of gaming, one line of code at a time.</p>
+        </div>
+    </footer>
 
-        <footer>
-            <div class="social-links">
-                <p>Follow along:</p>
-                <a href="https://x.com/Century6Games" target="_blank" rel="noopener noreferrer">X: @Century6Games</a> |
-                <a href="https://youtube.com/@Century6Games" target="_blank" rel="noopener noreferrer">YouTube: @Century6Games</a>
-            </div>
-
-            <div class="disclaimer">
-                <p>Century6 &amp; Sliced Together are not copyrighted or trademarked yet.</p>
-            </div>
-        </footer>
-    </div>
-    <script src="./script.js"></script>
+    <script type="importmap">
+    {
+      "imports": {
+        "main": "./js/main.js",
+        "config": "./js/config.js"
+      }
+    }
+    </script>
+    <script type="module">
+        import { initCommon } from 'main';
+        initCommon();
+    </script>
 </body>
 </html>

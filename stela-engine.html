@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stela Engine - Century6</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="assets/century6-logo.png">
+</head>
+<body class="stela-theme">
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo-link">
+                <h1>Century6</h1>
+            </a>
+            <button id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="stela-engine.html" class="active">Stela Engine</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="engine-intro" class="scroll-reveal">
+            <div class="container">
+                <h2 class="scroll-reveal">Stela Engine</h2>
+                <p class="scroll-reveal d-100">Stela Engine is our flagship project – a modern, <span class="highlight">open-source</span> game engine designed for flexibility and performance. We believe in the power of open development and aim to provide a robust toolset for game creators.</p>
+                <p class="scroll-reveal d-200"><strong>License:</strong> Stela Engine is proudly licensed under the <a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener noreferrer">MIT License</a>.</p>
+                <a href="https://github.com/C6Dev/StelaEngine" target="_blank" rel="noopener noreferrer" class="btn scroll-reveal d-300">View on GitHub</a>
+            </div>
+        </section>
+
+        <section id="latest-commit">
+            <div class="container">
+                <h3 class="scroll-reveal">Development Progress</h3>
+                <div id="latest-commit-info">
+                    <p>Loading latest commit information...</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="engine-features" class="scroll-reveal">
+            <div class="container">
+                <h4 class="scroll-reveal">Key Goals & Features (Planned)</h4>
+                <ul class="scroll-reveal d-100">
+                    <li>Lightweight and Unbloated Editor UI</li>
+                    <li>Innovative "Panels Menu Bar" for intuitive top-bar navigation</li>
+                    <li>Modular "Panel" system for UI elements</li>
+                    <li>Cross-platform compatibility (Desktop, Mobile, Web)</li>
+                    <li>Modern rendering pipeline</li>
+                    <li>Extensible plugin architecture</li>
+                    <li>User-friendly editor tools</li>
+                    <li>Community-driven development</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container scroll-reveal">
+            <p>&copy; <span id="current-year"></span> Century6. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script type="importmap">
+    {
+      "imports": {
+        "main": "./js/main.js",
+        "config": "./js/config.js"
+      }
+    }
+    </script>
+    <script type="module">
+        import { initCommon, initStelaEnginePage } from 'main';
+        initCommon();
+        initStelaEnginePage();
+    </script>
+</body>
+</html>
