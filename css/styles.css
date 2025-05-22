@@ -330,6 +330,33 @@ strong, .highlight {
     font-weight: bold;
 }
 
+#technical-details {
+    margin-top: 3rem;
+}
+
+#technical-details li,
+#engine-features li {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text-color-secondary);
+}
+
+#technical-details li::before,
+#engine-features li::before {
+    content: '✓';
+    color: var(--primary-color);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+#technical-details h4,
+#engine-features h4 {
+    margin-bottom: 2rem;
+    color: var(--text-color);
+}
+
 /* Footer */
 footer {
     background-color: var(--bg-color); /* Match body background */
