@@ -13,11 +13,11 @@
 
     --header-height: 65px; /* Define header height for calculations */
 
-    /* Stela Engine Green Theme Colors */
-    --stela-green-primary: #2ECC71;
-    --stela-green-variant: #27AE60;
-    --stela-green-shadow-primary: rgba(46, 204, 113, 0.2);
-    --stela-green-shadow-hover: rgba(46, 204, 113, 0.3);
+    /* C6GE Green Theme Colors */
+    --C6GE-green-primary: #2ECC71;
+    --C6GE-green-variant: #27AE60;
+    --C6GE-green-shadow-primary: rgba(46, 204, 113, 0.2);
+    --C6GE-green-shadow-hover: rgba(46, 204, 113, 0.3);
 
     /* Default (Blue) Theme Shadows for Button */
     --blue-shadow-primary: rgba(0, 122, 255, 0.2);
