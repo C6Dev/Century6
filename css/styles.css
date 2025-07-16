@@ -185,6 +185,13 @@ section {
     padding: 5rem 0; /* Increased padding */
     border-bottom: 1px solid var(--border-color);
     overflow: hidden; /* Prevent scrollbars from early animation states */
+    background: rgba(255, 255, 255, 0.05); /* Semi-transparent glass background */
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    margin: 1rem auto;
+    max-width: 1200px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 section:last-child {
     border-bottom: none;
@@ -249,7 +256,7 @@ strong, .highlight {
 
 .btn {
     display: inline-block;
-    background-color: var(--primary-color);
+    background-color: rgba(10, 132, 255, 0.1); /* Semi-transparent glass */
     color: #fff; /* White text on blue button */
     padding: 0.9rem 2rem; /* More padding */
     text-decoration: none;
@@ -257,13 +264,13 @@ strong, .highlight {
     font-weight: 600; /* Bolder text */
     font-size: 1rem;
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-    border: none;
-    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
     box-shadow: 0 4px 15px var(--blue-shadow-primary); /* Use CSS variable for shadow */
 }
 
 .btn:hover {
-    background-color: var(--primary-variant-color);
+    background-color: rgba(0, 122, 255, 0.2);
     transform: translateY(-2px); /* Slight lift on hover */
     box-shadow: 0 6px 20px var(--blue-shadow-hover); /* Use CSS variable for shadow */
 }
@@ -280,12 +287,13 @@ strong, .highlight {
 }
 
 #latest-commit-info {
-    background-color: var(--surface-color);
+    background-color: rgba(28, 28, 30, 0.8);
     padding: 2rem; /* More padding */
     border-radius: 12px; /* More rounded */
-    border: 1px solid var(--border-color);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     margin-top: 2rem; /* More margin */
     box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    backdrop-filter: blur(10px);
 }
 
 #latest-commit-info p {
