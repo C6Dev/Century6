@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C6GE - Century6</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="C6GE-theme">
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo-link">
+                <h1>Century6</h1>
+            </a>
+            <button id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle active">C6GE</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="C6GE.html" class="active">C6GE Homepage</a></li>
+                            <li><a href="wiki.html">C6GE Wiki</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="games.html">Games</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="engine-intro" class="section scroll-reveal">
+            <div class="container">
+                <div class="glass-card section-card">
+                    <h2 class="section-title scroll-reveal">C6GE</h2>
+                    <p class="section-text scroll-reveal d-100">C6GE is my flagship project – a modern, <span class="highlight">open-source</span> C++ game engine currently using OpenGL. The goal is to build a fast, lightweight, and versatile engine for developers targeting multiple platforms.</p>
+                    <p class="section-text scroll-reveal d-200"><strong>License:</strong> C6GE is proudly licensed under the <a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener noreferrer">MIT License</a>.</p>
+                    <div class="button-group scroll-reveal d-300">
+                        <a href="https://github.com/C6Dev/C6GE" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View on GitHub</a>
+                        <a href="wiki.html" class="btn btn-secondary">Check out the C6GE Wiki</a>
+                    </div>
+                    <div class="wiki-prompt scroll-reveal d-400">
+                        <p><strong>Looking for documentation?</strong> Visit our <a href="wiki.html">C6GE Wiki</a> for detailed guides, API references, and examples.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="latest-commit" class="section">
+            <div class="container">
+                <div class="glass-card section-card">
+                    <h3 class="section-title scroll-reveal">Development Progress</h3>
+                    <div id="latest-commit-info">
+                        <p>Loading latest commit information...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="engine-features" class="section scroll-reveal">
+            <div class="container">
+                <div class="glass-card section-card">
+                    <h4 class="section-title scroll-reveal">Current Features</h4>
+                    <ul class="feature-list scroll-reveal d-100">
+                        <li>Written in modern C++</li>
+                        <li>OpenGL rendering pipeline (DirectX, Vulkan, Metal planned)</li>
+                        <li>Basic 3D object rendering (cube, sphere, etc.)</li>
+                        <li>Real-time rendering preview</li>
+                        <li>Input handling and event loop system</li>
+                        <li>Basic scene graph and entity management</li>
+                        <li>Simple transformation system (translate, rotate, scale)</li>
+                        <li>Modular design for portability and extendibility</li>
+                        <li>Lightweight build setup</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="technical-details" class="section scroll-reveal">
+            <div class="container">
+                <div class="glass-card section-card">
+                    <h4 class="section-title scroll-reveal">Technical Specifications</h4>
+                    <ul class="feature-list scroll-reveal d-100">
+                        <li>C++17-based codebase</li>
+                        <li>OpenGL for graphics rendering</li>
+                        <li>Custom-built windowing and input system (no third-party engine dependencies)</li>
+                        <li>Cross-platform architecture</li>
+                        <li>Future support planned for Vulkan, Metal, and DirectX</li>
+                    </ul>
+                    <p class="section-text scroll-reveal d-200"><strong>Guide on how to use the engine coming soon.</strong></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Glass effect SVG -->
+    <div class="glass-effects">
+        <svg id="effectSvg" width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+            <filter id="displacementFilter4" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+                <feTurbulence id="lg-noise" type="fractalNoise" baseFrequency="0.012" numOctaves="2" seed="3" stitchTiles="stitch" result="noise"/>
+                <feGaussianBlur in="SourceGraphic" stdDeviation="1.0" result="preblur" id="lg-preblur"/>
+                <feDisplacementMap id="lg-dispR" in="preblur" in2="noise" scale="10" xChannelSelector="R" yChannelSelector="G" result="dispR"/>
+                <feColorMatrix type="matrix" values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" result="rOnly"/>
+                <feDisplacementMap id="lg-dispG" in="preblur" in2="noise" scale="12" xChannelSelector="R" yChannelSelector="G" result="dispG"/>
+                <feColorMatrix type="matrix" values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0" result="gOnly"/>
+                <feDisplacementMap id="lg-dispB" in="preblur" in2="noise" scale="14" xChannelSelector="R" yChannelSelector="G" result="dispB"/>
+                <feColorMatrix type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0" result="bOnly"/>
+                <feBlend in="rOnly" in2="gOnly" mode="screen" result="rg"/>
+                <feBlend in="rg" in2="bOnly" mode="screen" result="rgb"/>
+                <feGaussianBlur in="rgb" stdDeviation="0.0" result="post" id="lg-postblur"/>
+                <feColorMatrix type="saturate" values="1.1" result="sat" id="lg-sat"/>
+                <feComponentTransfer in="sat" result="glassOut">
+                    <feFuncR type="gamma" amplitude="1" exponent="0.95" offset="0"/>
+                    <feFuncG type="gamma" amplitude="1" exponent="0.95" offset="0"/>
+                    <feFuncB type="gamma" amplitude="1" exponent="0.95" offset="0"/>
+                    <feFuncA type="linear" slope="1" intercept="0"/>
+                </feComponentTransfer>
+            </filter>
+        </svg>
+    </div>
+
+    <script type="importmap">
+    {
+      "imports": {
+        "main": "./script.js",
+        "config": "./config.js"
+      }
+    }
+    </script>
+    <script type="module">
+        import { initCommon, initStelaEnginePage } from 'main';
+        initCommon();
+        initStelaEnginePage();
+    </script>
+</body>
+</html>

@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wiki - Century6</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="assets/century6-logo.png">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        /* Wiki-specific theme variables */
+        :root {
+            --wiki-bg-color: #0c1016;
+            --wiki-surface-color: #151c28;
+            --wiki-border-color: #2a3a56;
+            --wiki-text-color: #e6edf7;
+            --wiki-text-secondary: #a3b8d9;
+            --wiki-accent-color: #4d9de0;
+            --wiki-accent-secondary: #7d56f4;
+            --wiki-code-bg: #1a2333;
+            --wiki-highlight-color: rgba(77, 157, 224, 0.15);
+        }
+
+        /* Wiki-specific styles */
+        body {
+            background: var(--wiki-bg-color);
+            background-image: 
+                radial-gradient(circle at 10% 90%, rgba(77, 157, 224, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 90% 10%, rgba(125, 86, 244, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(77, 157, 224, 0.03) 0%, transparent 60%);
+        }
+
+        .wiki-container {
+            display: flex;
+            height: calc(100vh - var(--header-height));
+        }
+
+        .wiki-sidebar {
+            width: 300px;
+            background-color: var(--wiki-surface-color);
+            padding: 20px;
+            overflow-y: auto;
+            border-right: 1px solid var(--wiki-border-color);
+            transition: width 0.3s ease;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .wiki-sidebar h3 {
+            margin-top: 0;
+            font-family: 'Space Mono', monospace;
+            color: var(--wiki-text-color);
+            border-bottom: 1px solid var(--wiki-border-color);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .wiki-sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .wiki-sidebar li {
+            margin-bottom: 8px;
+        }
+
+        .wiki-sidebar a {
+            color: var(--wiki-text-secondary);
+            text-decoration: none;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            border-left: 2px solid transparent;
+        }
+
+        .wiki-sidebar a:hover {
+            background: var(--wiki-highlight-color);
+            color: var(--wiki-accent-color);
+            border-left: 2px solid var(--wiki-accent-color);
+        }
+
+        .wiki-sidebar a.active {
+            background: var(--wiki-highlight-color);
+            color: var(--wiki-accent-color);
+            border-left: 2px solid var(--wiki-accent-color);
+            font-weight: bold;
+        }
+
+        .wiki-search {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .wiki-search::before {
+            content: '🔍';
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--wiki-text-secondary);
+        }
+
+        .wiki-search input {
+            width: 100%;
+            padding: 10px 10px 10px 35px;
+            background-color: var(--wiki-code-bg);
+            border: 1px solid var(--wiki-border-color);
+            color: var(--wiki-text-color);
+            border-radius: 6px;
+            font-family: 'Space Mono', monospace;
+            transition: all 0.2s ease;
+        }
+
+        .wiki-search input:focus {
+            outline: none;
+            border-color: var(--wiki-accent-color);
+            box-shadow: 0 0 0 2px rgba(77, 157, 224, 0.2);
+        }
+
+        #wiki-content-results li a {
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: background 0.2s;
+            font-size: 0.9rem;
+        }
+
+        #wiki-content-results li a:hover {
+            background: var(--wiki-highlight-color);
+        }
+
+        .highlight {
+            background: var(--wiki-highlight-color);
+            border-radius: 4px;
+            padding: 2px 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .wiki-main {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+            background: linear-gradient(135deg, var(--wiki-bg-color) 0%, var(--wiki-surface-color) 100%);
+        }
+
+        .wiki-content {
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.8;
+            font-size: 1rem;
+            color: var(--wiki-text-color);
+        }
+
+        .wiki-content h1 {
+            font-size: 2.2rem;
+            margin: 1.5rem 0;
+            color: var(--wiki-accent-color);
+            font-family: 'Space Mono', monospace;
+            border-bottom: 1px solid var(--wiki-border-color);
+            padding-bottom: 10px;
+        }
+        .wiki-content h2 {
+            font-size: 1.8rem;
+            margin: 1.2rem 0;
+            color: var(--wiki-accent-secondary);
+            font-family: 'Space Mono', monospace;
+        }
+        .wiki-content h3 {
+            font-size: 1.4rem;
+            margin: 1rem 0;
+            color: var(--wiki-text-color);
+            font-family: 'Space Mono', monospace;
+        }
+        .wiki-content p {
+            margin-bottom: 1.2rem;
+            color: var(--wiki-text-secondary);
+        }
+        /* Custom scrollbar */
+        .wiki-main::-webkit-scrollbar {
+            width: 8px;
+        }
+        .wiki-main::-webkit-scrollbar-track {
+            background: var(--wiki-surface-color);
+        }
+        .wiki-main::-webkit-scrollbar-thumb {
+            background: var(--wiki-border-color);
+            border-radius: 4px;
+        }
+        .wiki-main::-webkit-scrollbar-thumb:hover {
+            background: var(--wiki-accent-color);
+        }
+        .wiki-sidebar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .wiki-sidebar::-webkit-scrollbar-track {
+            background: var(--wiki-surface-color);
+        }
+        .wiki-sidebar::-webkit-scrollbar-thumb {
+            background: var(--wiki-border-color);
+            border-radius: 4px;
+        }
+        .wiki-sidebar::-webkit-scrollbar-thumb:hover {
+            background: var(--wiki-accent-color);
+        }
+        .wiki-content h1, .wiki-content h2, .wiki-content h3 {
+            font-family: 'Space Mono', monospace;
+        }
+        .wiki-content code {
+            background: var(--wiki-code-bg);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: var(--wiki-accent-color);
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9em;
+            border: 1px solid var(--wiki-border-color);
+        }
+        .wiki-content pre {
+            background: var(--wiki-code-bg);
+            padding: 16px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border: 1px solid var(--wiki-border-color);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .wiki-content pre code {
+            border: none;
+            background: transparent;
+            padding: 0;
+        }
+        .wiki-content a {
+            color: var(--wiki-accent-color);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--wiki-accent-color);
+            transition: all 0.2s ease;
+        }
+        .wiki-content a:hover {
+            color: var(--wiki-accent-secondary);
+            border-bottom: 1px solid var(--wiki-accent-secondary);
+        }
+        .wiki-content ul, .wiki-content ol {
+            color: var(--wiki-text-secondary);
+            margin-left: 1.5rem;
+            margin-bottom: 1.2rem;
+        }
+        .wiki-content blockquote {
+            border-left: 3px solid var(--wiki-accent-secondary);
+            padding-left: 1rem;
+            margin-left: 0;
+            color: var(--wiki-text-secondary);
+            font-style: italic;
+            background: var(--wiki-highlight-color);
+            padding: 1rem;
+            border-radius: 0 8px 8px 0;
+        }
+        /* Wiki-specific header styles */
+        .wiki-header {
+            background: var(--wiki-surface-color) !important;
+            border-bottom: 1px solid var(--wiki-border-color) !important;
+        }
+        
+        .wiki-logo-accent {
+            color: var(--wiki-accent-color);
+            font-weight: bold;
+        }
+        
+        .wiki-header .logo-link h1 {
+            font-family: 'Space Mono', monospace;
+        }
+        
+        .wiki-header nav ul li a {
+            color: var(--wiki-text-secondary);
+            transition: color 0.2s ease;
+        }
+        
+        .wiki-header nav ul li a:hover {
+            color: var(--wiki-accent-color);
+        }
+        
+        .wiki-header nav ul li a.active {
+            color: var(--wiki-accent-color);
+            font-weight: bold;
+        }
+        
+        /* Dropdown menu styles */
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-toggle {
+            cursor: pointer;
+        }
+        
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--wiki-surface-color);
+            border: 1px solid var(--wiki-border-color);
+            border-radius: 4px;
+            padding: 0.5rem 0;
+            min-width: 150px;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .dropdown-menu li {
+            display: block;
+            width: 100%;
+        }
+        
+        .dropdown-menu a {
+            padding: 0.5rem 1rem;
+            display: block;
+            white-space: nowrap;
+        }
+        
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        
+        @media (max-width: 768px) {
+            .wiki-container {
+                flex-direction: column;
+            }
+            .wiki-sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid var(--wiki-border-color);
+            }
+            .wiki-main {
+                padding: 20px;
+            }
+            
+            .dropdown-menu {
+                position: static;
+                width: 100%;
+                box-shadow: none;
+                border: none;
+                background: transparent;
+                padding-left: 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="wiki-body">
+    <header class="wiki-header">
+        <div class="container">
+            <a href="index.html" class="logo-link">
+                <h1><span class="wiki-logo-accent">C6GE</span> Wiki</h1>
+            </a>
+            <button id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle">C6GE</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="C6GE.html">C6GE Homepage</a></li>
+                            <li><a href="wiki.html" class="active">C6GE Wiki</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="games.html">Games</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="wiki-container">
+        <aside class="wiki-sidebar">
+            <div class="wiki-search">
+                <input type="text" id="wiki-search-input" placeholder="Search wiki pages or content...">
+            </div>
+            <h3>Wiki Pages</h3>
+            <ul id="wiki-page-list">
+                <!-- Wiki pages will be dynamically loaded here -->
+            </ul>
+            <h3>Content Matches</h3>
+            <ul id="wiki-content-results"></ul>
+        </aside>
+        <section class="wiki-main">
+            <div class="wiki-content" id="wiki-content">
+                <h2>Welcome to C6GE Wiki</h2>
+                <p>Select a page from the left sidebar to view its content.</p>
+            </div>
+        </section>
+    </main>
+
+    <script type="importmap">
+    {
+      "imports": {
+        "main": "./js/main.js",
+        "config": "./js/config.js"
+      }
+    }
+    </script>
+    <script type="module">
+        import { initCommon } from 'main';
+        initCommon();
+
+        // Wiki-specific JS 
+        const pageList = document.getElementById('wiki-page-list'); 
+        const searchInput = document.getElementById('wiki-search-input'); 
+        const contentDiv = document.getElementById('wiki-content'); 
+        let currentPage = 'Home.md'; 
+        const pages = ['Home.md', 'Components.md', 'ECS.md', 'Engine.md', 'Input.md', 'Logging.md', 'Main.md', 'Render.md', 'Shader.md', 'Texture.md', 'Time.md', 'Window.md']; 
+        const pageContents = {}; 
+        let currentHighlight = null;
+        
+        // Function to populate the sidebar with wiki pages
+        function populateSidebar() {
+            pageList.innerHTML = '';
+            pages.forEach(page => {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = '#';
+                a.dataset.page = page;
+                // Remove .md extension and replace hyphens with spaces for display
+                a.textContent = page.replace('.md', '').replace(/-/g, ' ');
+                li.appendChild(a);
+                pageList.appendChild(li);
+            });
+        }
+
+        async function preloadPages() {
+            for (const page of pages) {
+                try {
+                    const response = await fetch(`wiki/${page}`);
+                    pageContents[page] = await response.text();
+                } catch (error) {
+                    console.error(`Error loading ${page}:`, error);
+                }
+            }
+        }
+
+        async function loadPage(page, highlightText = '', lineNumber = -1) {
+            try {
+                const response = await fetch(`wiki/${page}`);
+                const md = await response.text();
+                contentDiv.innerHTML = marked.parse(md);
+                document.querySelectorAll('.wiki-sidebar a').forEach(a => a.classList.remove('active'));
+                
+                // Find the sidebar link for this page and mark it as active
+                const sidebarLink = document.querySelector(`.wiki-sidebar a[data-page="${page}"]`);
+                if (sidebarLink) {
+                    sidebarLink.classList.add('active');
+                }
+                currentPage = page;
+
+                if (highlightText) {
+                    const elements = contentDiv.querySelectorAll('p, li, h1, h2, h3');
+                    for (let i = 0; i < elements.length; i++) {
+                        const normalizedElement = elements[i].textContent.toLowerCase().trim().replace(/\s+/g, ' ');
+                        const normalizedHighlight = highlightText.toLowerCase().trim().replace(/\s+/g, ' ');
+                        if (normalizedElement.includes(normalizedHighlight)) {
+                            elements[i].classList.add('highlight');
+                            // Fix: Add offset to scrollIntoView to ensure the highlighted element is visible
+                            elements[i].scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            currentHighlight = elements[i];
+                            break;
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading page:', error);
+                contentDiv.innerHTML = `<p>Error loading page: ${page}</p><p>Please check if the file exists in the wiki folder.</p>`;
+            }
+        }
+
+        function searchContent(search) {
+            const resultsList = document.getElementById('wiki-content-results');
+            resultsList.innerHTML = '';
+            if (!search) return;
+        
+            pages.forEach(page => {
+                const content = pageContents[page];
+                const lines = content.split('\n');
+                lines.forEach((line, index) => {
+                    if (line.toLowerCase().includes(search.toLowerCase())) {
+                        const rendered = marked.parse(line);
+                        const div = document.createElement('div');
+                        div.innerHTML = rendered;
+                        const cleaned = div.textContent.trim();
+                        const li = document.createElement('li');
+                        const a = document.createElement('a');
+                        a.href = '#';
+                        a.textContent = `${page}: Line ${index + 1} - ${cleaned.substring(0, 100)}...`;
+                        a.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            loadPage(page, cleaned);
+                        });
+                        li.appendChild(a);
+                        resultsList.appendChild(li);
+                    }
+                });
+            });
+        }
+
+        pageList.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A') {
+                e.preventDefault();
+                const page = e.target.dataset.page;
+                loadPage(page);
+            }
+        });
+
+        searchInput.addEventListener('input', (e) => {
+            const search = e.target.value.toLowerCase();
+            const items = pageList.getElementsByTagName('li');
+            Array.from(items).forEach(item => {
+                const text = item.textContent.toLowerCase();
+                item.style.display = text.includes(search) ? 'block' : 'none';
+            });
+            searchContent(search);
+        });
+
+        // Initialize: populate sidebar, preload pages, and load the default page
+        populateSidebar();
+        preloadPages()
+            .then(() => loadPage('Home.md'));
+
+    </script>
+</body>
+</html>
